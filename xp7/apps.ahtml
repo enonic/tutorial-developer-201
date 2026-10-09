@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<meta name="description" content="{description-deployment}">
-<title>Deployment</title>
+<meta name="description" content="Learn how to create XP projects and how to build and deploy your apps to an XP instance.">
+<title>My first app</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,23 +438,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Deployment</h1>
+<h1>My first app</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#deployment">Deployment</a>
+<li><a href="#starters">Starters</a></li>
+<li><a href="#deploy_your_app">Deploy your app</a>
 <ul class="sectlevel2">
-<li><a href="#enonic_cloud">Enonic Cloud</a></li>
-<li><a href="#self_hosted_software">Self-hosted (Software)</a></li>
+<li><a href="#changing_the_apps_title">Changing the app&#8217;s title</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
-<li><a href="#uploading_apps">Uploading apps</a></li>
-<li><a href="#vhosts">Virtual hosts = pretty URLs</a>
-<ul class="sectlevel2">
-<li><a href="#task_local_vhosts_config">Task: local vhosts config</a></li>
-</ul>
-</li>
-<li><a href="#next_steps">Next steps</a></li>
+<li><a href="#manual_deployment">Manual deployment</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </div>
 </div>
@@ -462,63 +458,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Working on your local copy is great for development, but you can&#8217;t expose what you build to someone else that way. For that, you need to deploy XP and your app to somewhere. In this chapter, we&#8217;ll give a high-level overview of how you do just that.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deployment"><a class="link" href="#deployment">Deployment</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You have two main choices for deploying XP, as described below:</p>
-</div>
-<div class="sect2">
-<h3 id="enonic_cloud"><a class="link" href="#enonic_cloud">Enonic Cloud</a></h3>
-<div class="paragraph">
-<p>This is our fully managed and hassle free hosting option. Sit back, relax and let Enonic take care of your infrastructure, including monitoring, backups, automation, and more.</p>
+<p>An application is the de facto way of adding functionality to Enonic XP. Almost everything you&#8217;ll be using and interacting with in Enonic is an app.</p>
 </div>
 <div class="paragraph">
-<p>Enonic Cloud is the easiest way of getting Enonic up and running. To learn more about it and get a free trial, head over to <a href="https://enonic.com/platform/platform-as-a-service">the Platform as a Service page</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="self_hosted_software"><a class="link" href="#self_hosted_software">Self-hosted (Software)</a></h3>
-<div class="paragraph">
-<p>If Enonic Cloud isn&#8217;t for you, you can also run the Enonic platform yourself. There&#8217;s a number of different deployment strategies and subscription options to choose from, based on what suits your particular situation best.</p>
-</div>
-<div class="paragraph">
-<p>To learn more about our software offerings and deployment strategies, check out <a href="https://developer.enonic.com/docs/xp/stable/deployment">the <em>deployment</em> section of the XP reference docs</a>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="uploading_apps"><a class="link" href="#uploading_apps">Uploading apps</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Regardless of how you deploy your XP instance, installing your application can be done in the same way.</p>
-</div>
-<div class="paragraph">
-<p>To upload an app:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into your XP deployment</p>
-</li>
-<li>
-<p>Use the admin menu to navigate to the applications page</p>
-</li>
-<li>
-<p>Choose install from the toolbar and upload your application <code>.jar</code> file. You can drag and drop your application or navigate the file hierarchy via the upload button.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/deployment-app-upload.png" alt="The application installation menu with a blue overlay. The overlay says 'drop files to upload'" width="1200">
-</div>
-<div class="title">Figure 1. Drag and drop applications to upload them</div>
-</div>
-</li>
-</ol>
+<p>For instance, you already have several applications installed, some of them even accessible from the <code>XP menu</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -527,147 +470,177 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Deployment can also be done directly from <a href="https://developer.enonic.com/docs/enonic-cli/master/xp#app">CLI</a>, which is useful in a <a href="https://developer.enonic.com/guides/ci-cd-for-xp-apps">Continuous Integration</a> setup.
+Not all installed apps will show on the XP menu, this is something that is configured on app level.
 </td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To clarify on the previous claims, here are some examples of XP apps that have already been installed on your sandbox:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enonic&#8217;s content authoring interface - <a href="https://market.enonic.com/vendors/enonic/content-studio">Content Studio</a> is an app</p>
+</li>
+<li>
+<p>Enonic&#8217;s headless CMS GraphQL API - <a href="https://market.enonic.com/vendors/enonic/guillotine">Guillotine</a> is also an app.</p>
+</li>
+<li>
+<p>Even your own project idea will most likely also be an app.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the end, apps are compiled and then deployed to XP instances where they run.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="starters"><a class="link" href="#starters">Starters</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creating a project from scratch can be a daunting task for any system you&#8217;re not familiar with. To make things easier for you, Enonic provides a range of different templates (known as <em>starters</em>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The complete list of starters can be found on <a href="https://market.enonic.com/starters">the Enonic Market</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For our first app, we&#8217;ll use the "Vanilla" starter. This starter contains the bare minimum. We&#8217;ll use this to familiarize ourselves with how an XP app is structured and how to deploy it on your sandbox.</p>
+</div>
+<div class="paragraph">
+<p><strong>Open a new terminal window</strong> (leave the sandbox running in the first one) and run this command to create your application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic create com.example.tutorial101 -r starter-vanilla -s tutorial</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command uses <code>starter-vanilla</code> as a template, gives the app the name <code>com.example.tutorial101</code>, places the code in the folder <code>tutorial101</code>, and links the app to the <code>tutorial</code> sandbox.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You don&#8217;t need to open the starter docs, so type <code>N</code> and press <kbd>Enter</kbd> if asked.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Project names matter. XP does not support running two apps with the same name within a single instance. The name also becomes part of the GraphQL type names you will see later in this tutorial, so if you choose a different name, substitute it wherever <code>com.example.tutorial101</code> appears.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The project directory contains a fairly minimal XP application. The most relevant parts of the directory are:</p>
+</div>
+<div class="listingblock">
+<div class="title">Essential XP project structure</div>
+<div class="content">
+<pre class="highlight"><code class="language-files" data-lang="files">build.gradle <i class="conum" data-value="1"></i><b>(1)</b>
+gradle.properties <i class="conum" data-value="2"></i><b>(2)</b>
+settings.gradle <i class="conum" data-value="3"></i><b>(3)</b>
+src/
+  main/
+    resources/ <i class="conum" data-value="4"></i><b>(4)</b>
+      enonic.yaml <i class="conum" data-value="5"></i><b>(5)</b>
+      cms/ <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The main build file for defining dependencies and more build-related details.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Contains the standard project settings, such as the app name and the XP version it is built for.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Activates the XP Gradle plugin that builds your app.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The main project folder. Code, schemas and assets are placed here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The application descriptor, holding the app&#8217;s title, description and vendor information.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Where the content schemas you will create in this tutorial go.</td>
 </tr>
 </table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="vhosts"><a class="link" href="#vhosts">Virtual hosts = pretty URLs</a></h2>
+<h2 id="deploy_your_app"><a class="link" href="#deploy_your_app">Deploy your app</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When accessing XP resources such as the GraphQL API explorer in this tutorial, the URLs have been long and unsightly. When working in production environment, this isn&#8217;t something you want. Instead, you want short, pretty URLs that are easy to remember. Virtual hosts (<em>vhosts</em>) configuration lets you do just that.</p>
+<p>Now that we&#8217;ve set up a project, let&#8217;s see how we build (or <em>compile</em>) and deploy the project to the sandbox. Again, the CLI is key to making this process as smooth as possible.</p>
 </div>
 <div class="paragraph">
-<p>Your vhosts file is a configuration file that sits in your XP sandbox&#8217;s configuration directory. This file contains mappings from public-facing URLs to internal URLs. This lets the user access <code>{p1-site-slug}.com/api</code> and retrieve content from <code>/site/default/master/{p1-site-slug}/api</code>.</p>
-</div>
-<div class="paragraph">
-<p>An example vhosts file that achieves the mapping mentioned could contain the following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>enabled = true <i class="conum" data-value="1"></i><b>(1)</b>
-
-mapping.example.host = {p1-site-slug}.com <i class="conum" data-value="2"></i><b>(2)</b>
-mapping.example.source = / <i class="conum" data-value="3"></i><b>(3)</b>
-mapping.example.target = /site/default/master/{p1-site-slug}/ <i class="conum" data-value="4"></i><b>(4)</b></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Enable vhosts configuration</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Intercept requests to <code>{p1-site-slug}.com</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Map any request that starts with this path &#8230;&#8203;</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>&#8230;&#8203; to this internal URL.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To read more about virtual hosts, head to the <a href="https://developer.enonic.com/docs/xp/stable/deployment/vhosts"><em>Vhosts</em> section of the deployment documentation</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="task_local_vhosts_config"><a class="link" href="#task_local_vhosts_config">Task: local vhosts config</a></h3>
-<div class="paragraph">
-<p>To explore how vhosts mappings work, let&#8217;s configure vhosts for our local XP instance. Then, to test it, we&#8217;ll configure our local <code>hosts</code> file.</p>
-</div>
-<div class="paragraph">
-<p>For the purposes of this task, we&#8217;ll make it so that everyone can access the content of your site without any sort of authentication. We&#8217;ll cover access and permissions more closely in the <a href="iam.ahtml">next chapter</a>.</p>
+<p>Here are the steps we need to take:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Find your site in Content Studio and open its content form. From here, open the permissions dialog by pressing the padlock button marked access:</p>
-<div class="imageblock">
+<p>Change to the project directory:</p>
+<div class="listingblock">
 <div class="content">
-<img src="media/deployment-open-permissions.png" alt="The content form&#8217;s ribbon containing buttons marked with 'site', a calendar, a wrench, and a padlock.">
+<pre class="highlight"><code class="language-shell" data-lang="shell">cd tutorial101</code></pre>
 </div>
-<div class="title">Figure 2. The content form ribbon</div>
 </div>
 </li>
 <li>
-<p>Change the permissions for the site by:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>unchecking "inherit permisions"</p>
-</li>
-<li>
-<p>adding the "Everyone" role with the "Can Read" permission (the default).</p>
-<div class="imageblock">
+<p>Start the deployment with Enonic CLI:</p>
+<div class="listingblock">
 <div class="content">
-<img src="media/deployment-edit-permissions.png" alt="The permissions dialog after the necessary changes. In addition to the default roles and permissions, it lists 'Everyone' with 'Can Read' permissions.">
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic dev</code></pre>
 </div>
-<div class="title">Figure 3. The permissions dialog with the "Everyone" role added.</div>
 </div>
-</li>
-<li>
-<p>Apply the changes</p>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>Find and open your sandbox&#8217;s vhosts file. From your user&#8217;s home directory, the path will be <code>.enonic/sandboxes/&lt;sandbox-name&gt;/home/config/com.enonic.xp.web.vhost.cfg</code>, where <code>&lt;sandbox-name&gt;</code> varies depending on which sandbox you want to configure. If it is your first one, it&#8217;ll be <code>Sandbox1</code>.</p>
-</li>
-<li>
-<p>Update the vhosts file.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-config" data-lang="config">enabled = true
-
-mapping.site.host = xp-site.com <i class="conum" data-value="1"></i><b>(1)</b>
-mapping.site.source = /
-mapping.site.target = /site/default/draft/{p1-site-slug}/api
-
-mapping.localhost.host = localhost <i class="conum" data-value="2"></i><b>(2)</b>
-mapping.localhost.source = /
-mapping.localhost.target = /
-mapping.localhost.idProvider.system = default</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>If requests go to <code>xp-site.com</code>, send them to the target at <code>{p1-api-path}</code>. Note that this does not affect port mapping, so you&#8217;d still need to append the port (<code>:8080</code>) for your local setup.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This block allows the localhost mappings to keep working. Without this, <code>localhost:8080</code> wouldn&#8217;t work anymore. We&#8217;ll talk more about the ID provider line in the <a href="iam.ahtml">next chapter</a>.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>If you&#8217;re watching your XP process, you should see a message like this:</p>
-<div class="literalblock">
-<div class="content">
-<pre>2021-06-09 13:49:43,405 INFO  c.e.x.s.i.config.ConfigInstallerImpl - Loaded config for [com.enonic.xp.web.vhost]
-2021-06-09 13:49:43,411 INFO  c.e.x.w.v.i.c.VirtualHostServiceImpl - Virtual host is enabled and mappings updated.</pre>
-</div>
-</div>
 <div class="paragraph">
-<p>This means that XP has updated the mappings and is ready to go.</p>
+<p>While deploying the project, the CLI will print what it&#8217;s doing to your terminal. It will look something like this:</p>
 </div>
-</li>
-<li>
-<p>To test this out, update your local hosts file (<a href="https://en.wikipedia.org/wiki/Hosts_%28file%29"><em>hosts file</em> on Wikipedia</a>) to point <code>xp-site.com</code> to <code>127.0.0.1</code> by adding the following line to the file:</p>
 <div class="listingblock">
+<div class="title">Sample output from build process</div>
 <div class="content">
-<pre class="highlight"><code class="language-conf" data-lang="conf">127.0.0.1 xp-site.com</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">Building in sandbox 'tutorial'...
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+&gt; Task :deploy
+Deploying 'tutorial101.jar' to '/Users/you/.enonic/sandboxes/tutorial/home/deploy'
+
+BUILD SUCCESSFUL in 5s
+Waiting for changes to input files...</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -677,58 +650,155 @@ mapping.localhost.idProvider.system = default</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-On Linux and macOS you&#8217;ll find the hosts file at <code>/etc/hosts</code>. On Windows, it&#8217;s located at  <code>c:\Windows\System32\Drivers\etc\hosts</code>
+<strong>Gradle got you worried?</strong> Enonic uses Gradle to support other programming languages and tools beyond JavaScript. Just stay calm and continue the journey!
 </td>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>Now access <code><a href="http://xp-site.com:8080/api" class="bare">http://xp-site.com:8080/api</a></code> in your browser. If all has gone well, you should see the GraphQL API explorer.</p>
-</li>
-</ol>
-</div>
-<div class="sect3">
-<h4 id="troubleshooting"><a class="link" href="#troubleshooting">Troubleshooting</a></h4>
 <div class="paragraph">
-<p>If you&#8217;re not seeing anything when you direct your browser to <code><a href="http://xp-site.com:8080/api" class="bare">http://xp-site.com:8080/api</a></code> or aren&#8217;t able to access the resources, that may be due to a browser setting. Try using a different browser and see if that makes a difference. Alternatively, you can try running</p>
+<p>This copies the application .jar file to your sandbox&#8217;s <code>home/deploy/</code> folder when changes are made. Since in this case we deployed <code>tutorial101.jar</code> into the <code>tutorial</code> sandbox, we should expect that file to be in <code>~/.enonic/sandboxes/tutorial/home/deploy</code>.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">curl --head xp-site.com:8080/api</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If the connection is successful, your output should look something like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>HTTP/1.1 200 OK <i class="conum" data-value="1"></i><b>(1)</b>
-Date: Wed, 04 Aug 2021 09:32:22 GMT
-Content-Type: text/html;charset=utf-8
-Content-Length: 1657</pre>
-</div>
-</div>
-<div class="colist arabic">
+<div class="admonitionblock note">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This indicates that the request was successful. This is the most important part. As long as it says <code>200 OK</code> you can ignore the rest of the message. You can <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">read more about HTTP status codes on Wikipedia</a></td>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>.enonic</code> is the folder used by the CLI to manage your sandboxes and Enonic XP distributions.
+</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>You might not be able to do much with that output, but it means the mapping has worked successfully, which is the important part for this task.</p>
+<p>XP picks up on this automatically and starts the app for you. The <code>enonic dev</code> command keeps running, watches for changes in your project and redeploys it when you save a file. Keep it running in its own terminal while you follow this tutorial.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to build or deploy your project manually, you can use the <code>enonic project build</code> and <code>enonic project deploy</code> commands.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To confirm that your application was started correctly, you can look at the logs in the sandbox&#8217;s terminal window. They should say something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">[...] - Local application [com.example.tutorial101] installed successfully
+[...] - Application [com.example.tutorial101] started successfully</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also verify that the application was installed correctly from the welcome page <a href="http://localhost:8080">http://localhost:8080</a>, or from the XP admin via <code>XP Menu</code> &#8594; <code>Applications</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/applications-vanilla.png" alt="The applications list with a few applications installed. Also shows application details, such as content install time, version, and required XP system version for the selected application." width="421w">
+</div>
+<div class="title">Figure 1. Your app should now be visible in the applications list</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ve now successfully built and deployed your first Enonic XP application!</p>
+</div>
+<div class="sect2">
+<h3 id="changing_the_apps_title"><a class="link" href="#changing_the_apps_title">Changing the app&#8217;s title</a></h3>
+<div class="paragraph">
+<p>You might have noticed that the application we created is listed as "Vanilla Example". What if you wanted to change that to something more descriptive? Open the application descriptor, <code>src/main/resources/enonic.yaml</code>, in your editor:</p>
+</div>
+<div class="listingblock">
+<div class="title">src/main/resources/enonic.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "Application"
+title: "Vanilla Example"
+description: "Edit app description at src/main/resources/enonic.yaml"
+vendorName: "Acme Inc"
+vendorUrl: "https://example.com"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Change the <code>title</code> to whatever you want it to display, and replace the stock <code>description</code> with something more appropriate while you&#8217;re at it.</p>
+</div>
+<div class="paragraph">
+<p>Since <code>enonic dev</code> is watching your project, the app is redeployed as soon as you save. Revisit the Applications tool and you should see your new title.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting"><a class="link" href="#troubleshooting">Troubleshooting</a></h3>
+<div class="paragraph">
+<p>If the application doesn&#8217;t show up in the Applications tool after you&#8217;ve run <code>enonic dev</code>, check the logs (for the build first, and then for XP) for errors. The build might have failed or something may have gone wrong when deploying.</p>
+</div>
+<div class="paragraph">
+<p>If the build works, but nothing shows up in the Applications tool, make sure you&#8217;re on the right sandbox. The CLI deploys to the sandbox specified during the project creation, and that&#8217;s stored in the project&#8217;s <code>.enonic</code> file, which is placed in the project directory root. This has to match the name of the sandbox that&#8217;s running:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/project-dot-enonic-file.png" alt=".enonic file on the project root showing to which sandbox the project should be deployed to." width="380w">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You may change the application&#8217;s sandbox by running the following command from your project root:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">enonic project sandbox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then select the desired sandbox.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="next_steps"><a class="link" href="#next_steps">Next steps</a></h2>
+<h2 id="manual_deployment"><a class="link" href="#manual_deployment">Manual deployment</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nice work; you&#8217;ve exposed the site to the web and given everyone access to it! But you&#8217;ve also given <em>everyone</em> access to it. Often, you&#8217;ll want to restrict access to certain parts of your site and require users to log in. The <a href="iam.ahtml">next chapter</a> covers permissions and access control.</p>
+<p>If you&#8217;ve checked that you&#8217;re running the right sandbox and that the deploy succeeded, but you&#8217;re still not seeing the application, you can do a manual deploy.</p>
+</div>
+<div class="paragraph">
+<p>The project build result is available in the <code>build/libs</code> directory of the project. You can copy this <code>.jar</code> file to the sandbox&#8217;s <code>home/deploy</code> directory. This will make XP pick it up. If you&#8217;ve used the suggested names in the steps above (and the default directories for XP configuration), this command will move the file for you on Unix systems when run from the project root:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">mv build/libs/tutorial101.jar ~/.enonic/sandboxes/tutorial/home/deploy/</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you had to deploy manually when going through this tutorial, please get in touch on <a href="https://slack.enonic.com">the community slack</a> so we can improve the documentation and the process.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="link" href="#summary">Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You have now created, built and deployed an application to your sandbox. Next up you&#8217;ll <a href="content-studio.ahtml">get familiar with Content Studio and content types</a>.</p>
 </div>
 </div>
 </div>
