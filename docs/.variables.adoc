@@ -13,3 +13,12 @@
 :image-m: width=900
 :image-l: width=1050
 :image-xl: width=1200
+:sandbox-name: tutorial
+:project-name: tutorial101
+:project-name-full: com.example.{project-name}
+:title-setup: Setting up your development environment
+:title-sandbox: Sandbox
+:title-apps: My first app
+:description-setup: Starting from scratch, this {document} takes you through how to install all the necessary tools to get started with Enonic XP development.
+:description-sandbox: Introducing a fundamental concept of Enonic XP development: sandboxes.
+:description-apps: Learn how to create XP projects and how to build and deploy your apps to an XP instance.

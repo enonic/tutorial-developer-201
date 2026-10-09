@@ -1,0 +1,218 @@
+= {title-setup}
+include::.variables.adoc[]
+:description: {description-setup}
+
+The purpose of this {document} is to ensure you have the necessary tools to start developing efficiently with XP.
+
+In general, the bare minimum you'll need is:
+
+- Enonic CLI -> _managing your XP projects_
+- Git / Github -> _versioning your XP projects_
+- Editor / IDE (Integrated Development Environment) -> _coding your ideas into XP projects_
+
+TIP: If you've already got this configured and installed, feel free to skip to the next {document}.
+
+== Enonic CLI
+
+Enonic provides a Command Line Interface (CLI) for working with XP.
+
+If the concept of CLI is new to you, you can imagine it as an interactive terminal program that will listen for some specific inputs (usually as text), and based on them, execute specific tasks on your machine.
+
+The goal of the CLI is to improve the development workflow, and, by using it, you'll have an easy and quick way to manage your XP apps.
+
+=== Installation
+
+The easiest and fastest way to install the CLI is by using Node Package Manager (NPM):
+
+[source,shell]
+----
+npm install -g @enonic/cli
+----
+
+Note that to run the npm install command you need to make sure that you have both Node and NPM installed on your machine. You can quickly check if they are installed by running the following commands on your terminal:
+
+[source,shell]
+----
+node -v
+----
+
+to check the version of Node you have installed locally. Same for NPM:
+
+[source,shell]
+----
+npm -v
+----
+
+If they are not installed, you can head to https://nodejs.org/[nodejs.org] to proceed installing them.
+
+[NOTE]
+====
+Enonic CLI is also available on other package managers, such as https://developer.enonic.com/start#brew[brew] for macOS, https://developer.enonic.com/start#scoop[scoop] for Windows and https://developer.enonic.com/start#curl[Snapcraft] on Linux.
+====
+
+NOTE: You do not need to install Java or Gradle yourself. The sandbox you create in the next {document} bundles the Java runtime, and the CLI uses it when building your apps.
+
+=== Verification
+
+After running the installation command above, you can check if the Enonic CLI was properly installed by running
+
+[source,shell]
+----
+enonic -v
+----
+
+TIP: Already have the CLI installed? Run `enonic latest` to check whether a newer version is available, and `enonic upgrade` to install it. This tutorial expects CLI version 4 or newer.
+
+=== Commands
+
+Let's first list some commands... run the following command in your terminal:
+
+[source,shell]
+----
+enonic
+----
+
+It should output something that looks a bit like this:
+
+.Main help page
+
+[source,shell]
+----
+Enonic CLI 4.1.2
+Manage XP instances, home folders and projects
+USAGE:
+   enonic [global options] [command] [command options] [arguments...]
+
+COMMANDS:
+     create     Create a new Enonic project
+     dev        Start current project in dev mode
+     snapshot   Create and restore snapshots
+     dump       Dump and load complete repositories
+     export     Export data from a given repository, branch and content path.
+     import     Import data from a named export.
+     app        Install, list, stop and start applications
+     repo       Tune and manage repositories
+     cms        CMS commands
+     system     System commands
+     auditlog   Manage audit log repository
+     latest     Check for latest version
+     upgrade    Upgrade to the latest version
+     uninstall  Uninstall Enonic CLI
+     vacuum     Removes old version history and segments from content storage
+     help, h    Shows a list of commands or help for one command
+
+CLOUD COMMANDS:
+     cloud  Manage Enonic cloud
+
+PROJECT COMMANDS:
+     sandbox  Manage Enonic instances
+     project  Manage Enonic projects
+
+GLOBAL OPTIONS:
+   --help, -h     show help
+   --version, -v  print the version
+----
+
+If you want to know more about how to use one of the subcommands, you can use the `help` subcommand. For instance, if you want to know more about the `sandbox` subcommand, you can run:
+
+[source,shell]
+----
+enonic sandbox help
+----
+
+.Sandbox help page
+
+[source,shell]
+----
+NAME:
+   enonic sandbox - Manage Enonic instances
+
+USAGE:
+   enonic sandbox [global options] command [command options] [arguments...]
+
+VERSION:
+   4.1.2
+
+COMMANDS:
+   list, ls         List all sandboxes
+   start            Start the sandbox in dev mode.
+   stop             Stop the sandbox started in detached mode.
+   create           Create a new sandbox.
+   delete, del, rm  Delete a sandbox
+   upgrade, up      Upgrades the distribution version.
+   copy, cp         Create a copy of a sandbox with all content.
+
+GLOBAL OPTIONS:
+   --help, -h  show help
+----
+
+As can be seen, there are a lot of commands and their subcommands to help you. On this guide, we'll only cover the necessary ones to be able to start developing on XP.
+
+NOTE: Consider checking the https://developer.enonic.com/docs/enonic-cli[CLI documentation] to further investigate its capabilities.
+
+== Git
+
+Git is a free and open source _distributed version control system_. Later on in this tutorial, we will create new Enonic development projects using _starters_. The Enonic CLI uses Git to download these starters and to prepare the files for your project locally.
+
+TIP: Want to learn more about Git? Check out https://guides.github.com/introduction/git-handbook/[this useful Git handbook by Github].
+
+=== Installation
+
+To install Git, follow the notes for your operating system below.
+
+==== macOS
+
+NOTE: Apple maintains its own fork of Git. If you have XCode installed, you already have Git installed too.
+
+To install Git via Homebrew, run this command:
+
+[source,shell]
+----
+brew install git
+----
+
+==== Windows
+
+To install Git using Scoop, run the following command from Powershell:
+
+[source,shell]
+----
+scoop install git
+----
+
+==== Linux
+
+To install Git with Snapcraft, run the following command:
+
+[source,shell]
+----
+sudo snap install git
+----
+
+=== Verification
+
+Once you have installed Git, you can verify that it's working correctly by running the following command:
+[source,shell]
+----
+git version
+----
+
+== Editor
+
+Source-code editors (also known as _text editors_ or just _editors_ for short) are applications designed primarily for editing plain text and often specifically for working with code. They are therefore commonly used for programming.
+
+If you do not yet have an editor you like, follow the steps below to get started with one.
+
+=== Download Visual Studio Code
+
+https://code.visualstudio.com/[Visual Studio Code] (often shortened to _VS Code_ or simply _Code_) is one of the most popular source-code editors around at the moment. It's free, open source, and available on all major platforms.
+
+You can navigate to their https://code.visualstudio.com/Download[download page] and install the version matching your operating system.
+
+If you opt to move forward with VS code as your editor, it's worth checking some of the https://marketplace.visualstudio.com/[powerful extensions] available on their marketplace. A YAML extension is a good start, since XP schemas are written in YAML.
+
+== Summary
+
+Congrats! You've installed the Enonic CLI, Git, and an editor. You're now set up to start working with Enonic XP 🚀. Keep your new tools at hand; we'll be using them heavily throughout this guide, so you'll have lots of time to get to know them better.
+
+Next up, you will <<sandbox#, get familiar with sandboxes>>.

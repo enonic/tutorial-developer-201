@@ -1,0 +1,173 @@
+= {title-sandbox}
+include::.variables.adoc[]
+:description: {description-sandbox}
+
+In this {document} we'll introduce a fundamental concept to start developing with Enonic XP - *Sandboxes*
+
+By the end, you'll have created and started a sandbox using the CLI, understanding what it is and what is their purpose.
+
+== What is a sandbox?
+
+A _sandbox_ is basically a local developer instance of Enonic XP. Each sandbox may have different versions of XP, different data and configuration.
+
+Having a local (and running) instance of XP is essential for developing apps on Enonic XP.
+
+It is possible to setup multiple sandboxes on your machine, each one of them using XP on a specific version.
+
+== Your first sandbox
+
+To create a sandbox using the CLI, start by running the following command:
+
+[source,shell,{subs}]
+----
+enonic sandbox create {sandbox-name} -t essentials -f
+----
+
+This creates a sandbox called `{sandbox-name}` based on the `essentials` template (a set of applications from Enonic Market), and starts it. The `-f` flag accepts the default answer to every prompt, which selects the most recent release of Enonic XP.
+
+NOTE: This tutorial is written for Enonic XP 8.1 and the versions of Content Studio and Guillotine that go with it. If the CLI offers you an older version, pick 8.1 or newer.
+
+You will now see a fair amount of output in your terminal, here are the most notable parts:
+
+// TODO(xp8-verify): recapture the three log samples below from an XP 8.1 sandbox
+.Creating the sandbox
+[source,shell,{subs}]
+----
+Loading templates from Enonic Market...Done.
+Using template 'Essentials'
+Loading...Done
+Downloading distro [=======================================================] 100.00%
+Unzipping distro...Done
+
+Sandbox '{sandbox-name}' created with distro 'enonic-xp-mac-arm64-sdk-8.1.0'.
+----
+
+.Starting the sandbox
+[source,shell,{subs}]
+----
+____________________________(_)______   ____  _________
+_  _ \_  __ \  __ \_  __ \_  /_  ___/   __  |/_/__  __ \
+/  __/  / / / /_/ /  / / /  / / /__     __>  < __  /_/ /
+\___//_/ /_/\____//_/ /_//_/  \___/     /_/|_| _  .___/
+                                               /_/
+
+# Enonic XP 8.1.0
+# Built on ...
+# OpenJDK 64-Bit Server VM 25 ...
+# Install directory is /home/username/.enonic/distributions/enonic-xp-linux-sdk-8.1.0
+# Home directory is /home/username/.enonic/sandboxes/{sandbox-name}/home
+
+*
+* DEV mode is ON. This will slow down the system and should NOT BE used in production.
+*
+[...]
+----
+
+This gives you some useful information about this sandbox, including its XP version, and the Home directory.
+
+.Reserved ports
+[source,shell]
+----
+[...] - Listening on ports [8080](xp), [4848](management) and [2609](monitoring)
+[...] - Searching for installed applications
+[...] - Found [0] installed applications
+[...] - Started Enonic XP in 11207 ms
+[...]
+----
+
+This means that your local XP instance is up and running and ready to serve requests. The instance exposes the following ports:
+
+* *8080*: Web
+* *4848*: Management API (Used by the CLI when running commands against this XP instance)
+* *2609*: Monitoring API (Used for metrics and instance info)
+
+.Installing and starting applications
+[source,shell]
+----
+[...] - Installed application com.enonic.app.contentstudio bundle 101
+[...] - Registering application com.enonic.app.contentstudio bundle 101
+[...] - Global Application [com.enonic.app.contentstudio] installed successfully
+----
+
+The sandbox will download and install the applications from the `essentials` template, producing logs like you see above. Applications may also produce logs when they are started.
+
+TIP: If you experience problems starting the sandbox, check the Troubleshooting section at the end of this {document}.
+
+== Stopping and starting
+
+To stop your sandbox, press kbd:[ctrl-c] in the terminal hosting the process. You can also run `enonic sandbox stop` in a different terminal instance.
+
+To start your sandbox, use the following command:
+
+[source,shell,{subs}]
+----
+enonic sandbox start {sandbox-name}
+----
+
+NOTE: The sandbox starts in development (aka dev) mode by default. To run the sandbox in production mode simply add `--prod` to the start command
+
+
+== XP Admin
+
+Let's have a look at the sandbox's web interface. Open http://localhost:8080[http://localhost:8080] in your browser (or just click this link).
+
+You should now see the XP boot page:
+
+// TODO(xp8-verify): recapture screenshot from XP 8.1
+image::xp-boot.png[The XP boot page, 1085w]
+
+The boot page provides an overview of the sandbox, including installed applications, as well as the https://developer.enonic.com/docs/platform/stable/config[standard configuration files].
+
+NOTE: Thanks to the `Essentials` template, several useful XP apps, including Content Studio, were automatically downloaded and installed.
+
+Click btn:[Log In as Guest] to open the XP admin. What this actually does is log you in as the XP instance's Super User. After logging in you should see something like this:
+
+// TODO(xp8-verify): recapture screenshot from XP 8.1
+image::xp-dashboard.png[The XP menu and dashboard, 1727w]
+
+You are now in the XP admin, served from `/admin`. The `XP menu` lists the admin tools your user has access to - Dashboard, Applications and Users come with the platform, and applications such as Content Studio add their own. Once inside a tool, the XP menu stays available in the top right corner so you can switch between tools.
+
+NOTE: If things don't look exactly the same, don't worry. The admin is automatically localized based on your browser's preferred language, and the look evolves between versions.
+
+
+== Troubleshooting
+
+If you have problems booting the sandbox, it may be that one or more of the ports used by XP are already in use. The command should warn you if something doesn't work right. It'll do this in one of two ways:
+
+. The CLI checks for the availability of some ports when starting up. If one of these ports isn't available, the CLI will abort with a message like this:
++
+[source,shell]
+----
+Port 8080 is not available, stop the app using it first!
+----
+
+. For ports where the CLI doesn't check for availability before starting, you might get an exception in the boot log. This is usually identifiable by a printed stack trace in your logs. Here's an example from what happens if port 4848 isn't available.
++
+[source,shell]
+----
+[...] ERROR c.e.xp.web.jetty.impl.JettyActivator - ... : The activate method has thrown an exception
+java.io.IOException: Failed to bind to 0.0.0.0/0.0.0.0:4848
+	at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:349)
+[...]
+Caused by: java.net.BindException: Address already in use
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:455)
+	... 78 common frames omitted
+----
+
+NOTE: The `[...]` replaces most of the stack trace for legibility reasons.
+
+If some ports are unavailable, you'll have to find out what programs are using those ports and then shut those programs down.
+
+How you find open ports varies from operating system to operating system, but if you're unsure about how to do it on your OS, check out the appropriate guide for:
+
+- https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/[Linux]
+- https://www.micahsmith.com/blog/2019/09/find-ports-in-use-on-macos/[macOS]
+- https://www.howtogeek.com/28609/how-can-i-tell-what-is-listening-on-a-tcpip-port-in-windows/[Windows]
+
+
+== Summary
+
+Congrats! Now you know what a _sandbox_ is, got more familiar with the CLI, and also visited the XP admin for the first time.
+
+You're now ready to move forward by <<apps#, creating your own app>>.
